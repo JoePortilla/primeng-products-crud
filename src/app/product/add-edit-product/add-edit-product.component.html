@@ -1,0 +1,76 @@
+<p-dialog
+  header="Header"
+  [(visible)]="displayAddModal"
+  (onHide)="closeModal()"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+>
+
+  <form [formGroup]="productForm">
+    <div class="field">
+      <label class="block">Title</label>
+      <input type="text" pInputText
+             formControlName="title"/>
+    </div>
+    <div [hidden]="title.valid || title.pristine">
+      <span *ngIf="title.errors?.['required']">
+        Field required
+      </span>
+    </div>
+
+    <div class="field">
+      <label class="block">Price</label>
+      <p-inputNumber
+        formControlName="price"></p-inputNumber>
+    </div>
+    <div [hidden]="price.valid || price.pristine">
+      <span *ngIf="price.errors?.['required']">
+        Field required
+      </span>
+    </div>
+
+    <div class="field">
+      <label class="block">Description</label>
+      <textarea pInputTextarea
+                formControlName="description"></textarea>
+    </div>
+
+    <div class="field">
+      <label class="block">Category</label>
+      <input type="text" pInputText
+             formControlName="category"/>
+    </div>
+    <div [hidden]="category.valid || category.pristine">
+      <span *ngIf="category.errors?.['required']">
+        Field required
+      </span>
+    </div>
+
+    <div class="field">
+      <label class="block">Image</label>
+      <input type="text" pInputText
+             formControlName="image"/>
+    </div>
+    <div [hidden]="image.valid || image.pristine">
+      <span *ngIf="image.errors?.['required']">
+        Field required
+      </span>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="closeModal()"
+      label="Cancel"
+      styleClass="p-button-text"
+    ></p-button>
+
+    <p-button
+      (click)="addProduct()"
+      label="Add"
+      [disabled]="productForm.invalid"
+    ></p-button>
+  </ng-template>
+
+</p-dialog>

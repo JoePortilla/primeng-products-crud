@@ -9,6 +9,7 @@ import {Product} from "./product";
 })
 export class ProductComponent {
   products: Product[] = [];
+  displayAddModal = false;
 
   constructor(private productService: ProductService) {
   }
@@ -23,5 +24,18 @@ export class ProductComponent {
         // console.log(response);
         this.products = response;
       });
+  }
+
+  showAddModal() {
+    this.displayAddModal = true;
+  }
+
+  hideAddModal(hide: boolean) {
+    this.displayAddModal = !hide;
+  }
+
+  saveProductToList(newData: any) {
+    this.products.unshift(newData);
+    // this.getProductList();
   }
 }
